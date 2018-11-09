@@ -19,10 +19,15 @@
         path: /home/ansible/.ssh/
         state: directory
         mode: 0700
-    - name: push the authorized_key file to make tower connectable to the host
-      template:
-        src: ../vars/authorized_keys.j2
-        dest: /home/ansible/.ssh/authorized_keys
-        mode: 0600
-        owner: ansible
-        group: ansible
+#    - name: push the authorized_key file to make tower connectable to the host
+#      template:
+#        src: ../vars/authorized_keys.j2
+#        dest: /home/ansible/.ssh/authorized_keys
+#        mode: 0600
+#        owner: ansible
+#        group: ansible
+    - name: push authorized key
+      authorized_key:
+        user: ansible
+        state: present
+        key: https://github.com/ddenjean/SRIIL_LAB/tree/master/vars/ansible.keys
