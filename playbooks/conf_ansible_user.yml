@@ -1,0 +1,24 @@
+- name: create ansible user and configure it to have all right on server
+  hosts: localhost
+  vars:
+  tasks:
+    - name: create groupe ansible
+      group:
+        name: ansible
+        gid: 2000
+    - name: create user ansible
+      user: 
+        name: ansible 
+        uid: 2000
+    - name: make the user ansible sudoers
+      lineinfile:
+        path: /etc/sudoers
+        line: 'ansible  ALL=(ALL)       NOPASSWD: ALL'
+        state: present
+    - name: push the authorized_key file to make tower connectable to the host
+      template:
+        src: vars/authorized_key.j2
+        dest: /home/ansible/.ssh/authorized_key
+        mode: 0600
+        owner: ansible
+        group: ansible
