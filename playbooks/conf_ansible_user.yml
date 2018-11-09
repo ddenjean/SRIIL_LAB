@@ -30,4 +30,4 @@
       authorized_key:
         user: ansible
         state: present
-        key: https://github.com/ddenjean/SRIIL_LAB/tree/master/vars/ansible.key
+        key: ../vars/ansible.key
