@@ -1,8 +1,5 @@
 - name: create ansible user and configure it to have all right on server
   hosts: LAB
-  vars:
-    ask_pass: true
-    become_ask_pass: true
   tasks:
     - name: create groupe ansible
       group:
